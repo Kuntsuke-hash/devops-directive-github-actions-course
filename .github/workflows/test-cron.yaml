@@ -1,0 +1,26 @@
+name: Run Python Script Every 5 Minutes
+
+on:
+  schedule:
+    # Trigger every 5 minutes, Monday through Friday
+    - cron: "*/5 * * * 1-5"
+  workflow_dispatch: # Allows manual testing from the Actions UI
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/python-versions@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies (optional)
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Execute Python script
+        run: python path/to/your_script.py
