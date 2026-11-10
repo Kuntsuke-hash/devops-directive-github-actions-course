@@ -1,0 +1,14 @@
+name: jst-15-check
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+    - cron: "17 6 * * *"
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print JST time
+        run: |
+          echo "JST TIME ##### : $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
+          echo "UTC TIME ##### : $(date -u '+%Y-%m-%d %H:%M:%S')"
