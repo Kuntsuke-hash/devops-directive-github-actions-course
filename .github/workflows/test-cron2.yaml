@@ -1,0 +1,13 @@
+name: print-datetime-two
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print JST time
+        run: |
+          echo "JST TIME ##### : $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
+          echo "UTC TIME ##### : $(date -u '+%Y-%m-%d %H:%M:%S')"
